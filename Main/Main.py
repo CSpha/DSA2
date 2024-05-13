@@ -78,7 +78,7 @@ class Package:
         self.status = status
 
     def __str__(self):  # overwrite print(Package) otherwise it will print object reference
-        return "%s, %s, %s, %s, %s, %s, %s" % (
+        return "%s, %s, %s, %s, %s, %s, %s, %s," % (
             self.ID, self.address, self.city, self.state, self.zipcode, self.deadline, self.weight, self.status)
 
 
@@ -94,7 +94,7 @@ def loadPackageData(fileName):
             pZipcode = package[4]
             pDeadline = package[5]
             pWeight = package[6]
-            pStatus = "Loaded"
+            pStatus = "At hub"
 
             # package object
             package = Package(pID, pAddress, pCity, pState, pZipcode, pDeadline, pWeight, pStatus)
