@@ -1,3 +1,6 @@
+import csv
+
+
 # HashTable class using chaining.
 class ChainingHashTable:
     # Constructor with optional initial capacity parameter.
@@ -10,7 +13,7 @@ class ChainingHashTable:
 
     # Inserts a new item into the hash table.
 
-    def insert(self, key, address, city, state, zipcode, deadline, weight, notes):  # does both insert and update
+    def insert(self, key, address, city, state, zipcode, deadline, weight, status):  # does both insert and update
         # get the bucket list where this item will go.
         bucket = hash(key) % len(self.table)
         bucket_list = self.table[bucket]
@@ -25,11 +28,11 @@ class ChainingHashTable:
                 kv[4] = zipcode
                 kv[5] = deadline
                 kv[6] = weight
-                kv[7] = notes
+                kv[7] = status
                 return True
 
         # if not, insert the item to the end of the bucket list.
-        key_value = [key, address, city, state, zipcode, deadline, weight, notes]
+        key_value = [key, address, city, state, zipcode, deadline, weight, status]
         bucket_list.append(key_value)
         return True
 
@@ -46,7 +49,7 @@ class ChainingHashTable:
         for kv in bucket_list:
             # print (key_value)
             if kv[0] == key:
-                return kv[1], kv[2], kv[3], kv[4], kv[5], kv[6], kv[7]  # value
+                return kv[0], kv[1], kv[2], kv[3], kv[4], kv[5], kv[6], kv[7]  # value
         return None
 
     # Removes an item with matching key from the hash table.
@@ -63,31 +66,52 @@ class ChainingHashTable:
                 bucket_list.remove([kv[0], kv[1], kv[2], kv[3], kv[4], kv[5], kv[6], kv[7]])
 
 
-bestMovies = [
-    [1, "195 Street", "Salt Lake City", "UT", 84115, "10:30AM", 21, ""],
-    [2, "CASABLANCA - 1942"],
-    [3, "THE GODFATHER - 1972"],
-    [4, "GONE WITH THE WIND - 1939"],
-    [5, "LAWRENCE OF ARABIA - 1962"],
-    [6, "THE WIZARD OF OZ - 1939"],
-    [7, "THE GRADUATE - 1967"],
-    [8, "ON THE WATERFRONT- 1954"],
-    [9, "SCHINDLER'S LIST -1993"],
-    [10, "SINGIN' IN THE RAIN - 1952"],
-    [11, "STAR WARS - 1977"]
-]
+class Package:
+    def __init__(self, ID, address, city, state, zipcode, deadline, weight, status):
+        self.ID = ID
+        self.address = address
+        self.city = city
+        self.state = state
+        self.zipcode = zipcode
+        self.deadline = deadline
+        self.weight = weight
+        self.status = status
 
+    def __str__(self):  # overwrite print(Package) otherwise it will print object reference
+        return "%s, %s, %s, %s, %s, %s, %s" % (
+            self.ID, self.address, self.city, self.state, self.zipcode, self.deadline, self.weight, self.status)
+
+
+def loadPackageData(fileName):
+    with open(fileName) as wgupsPackageFile:
+        packageData = csv.reader(wgupsPackageFile, delimiter=',')
+
+        for package in packageData:
+            pID = int(package[0])
+            pAddress = package[1]
+            pCity = package[2]
+            pState = package[3]
+            pZipcode = package[4]
+            pDeadline = package[5]
+            pWeight = package[6]
+            pStatus = "Loaded"
+
+            # package object
+            package = Package(pID, pAddress, pCity, pState, pZipcode, pDeadline, pWeight, pStatus)
+            #print(p)
+
+            # Insert into the hash table
+            myHash.insert(pID, pAddress, pCity, pState, pZipcode, pDeadline, pWeight, pStatus)
+
+
+# Hash table instance
 myHash = ChainingHashTable()
 
-print("\nInsert:")
-myHash.insert(bestMovies[0][0], bestMovies[0][1], bestMovies[0][2], bestMovies[0][3], bestMovies[0][4], bestMovies[0][5], bestMovies[0][6], bestMovies[0][7])
-print(myHash.table)
+# Load packages to Hash Table
+loadPackageData('WGUPSPackageFile.csv')
 
-
-print("\nSearch:")
-print(myHash.search(1))
-
-print("\nRemove:")
-myHash.remove(1)
-print(myHash.table)
+print("WGUPSPackageFile from Hashtable:")
+# Fetch data from Hash Table
+for i in range(len(myHash.table)):
+    print("Package: {}".format(myHash.search(i+1)))  # 1 to 40 is sent to myHash.search()
 

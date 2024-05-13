@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a1f8cd27-72fd-4e80-b36e-6e9ee680e94c" name="Changes" comment="Created Hash Table file and have the appropriate key values for each column in the package file." />
+    <list default="true" id="a1f8cd27-72fd-4e80-b36e-6e9ee680e94c" name="Changes" comment="Created Hash Table file and have the appropriate key values for each column in the package file.">
+      <change afterPath="$PROJECT_DIR$/Main/WGUPSPackageFile.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hash table/Hash Table.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main/Main.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,18 +46,29 @@
   &quot;associatedIndex&quot;: 0
 }</component>
   <component name="ProjectId" id="2gHRq2vQRVixjPnbRMTvtv8f6HP" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "Python.Hash Table.executor": "Run",
+    "Python.Main.executor": "Run",
     "Python.__init__.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "working",
     "ignore.virus.scanning.warn.message": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Sea Turtle\PycharmProjects\DSA2\Main" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -81,6 +97,7 @@
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Created Hash Table file and have the appropriate key values for each column in the package file." />
     <option name="LAST_COMMIT_MESSAGE" value="Created Hash Table file and have the appropriate key values for each column in the package file." />
   </component>
