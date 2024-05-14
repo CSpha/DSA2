@@ -1,3 +1,4 @@
+# Philip Audet - Student ID: 001098879
 import csv
 
 
@@ -46,7 +47,6 @@ class ChainingHashTable:
         return None
 
     # Removes an item with matching key from the hash table.
-
     def remove(self, key):
         # get the bucket list where this item will be removed from.
         bucket = hash(key) % len(self.table)
@@ -71,8 +71,7 @@ class Package:
         self.status = status
 
     def __str__(self):  # overwrite print(Package) otherwise it will print object reference
-        return "%s, %s, %s, %s, %s, %s, %s, %s," % (
-            self.ID, self.address, self.city, self.state, self.zipcode, self.deadline, self.weight, self.status)
+        return "%s, %s, %s, %s, %s, %s, %s, %s" % (self.ID, self.address, self.city, self.state, self.zipcode, self.deadline, self.weight, self.status)
 
 
 def loadPackageData(filename):
