@@ -5,15 +5,14 @@ import csv
 class ChainingHashTable:
     # Constructor with optional initial capacity parameter.
     # Assigns all buckets with an empty list.
-    def __init__(self, initial_capacity=40):
+    def __init__(self, initial_capacity=10):
         # initialize the hash table with empty bucket list entries.
         self.table = []
         for i in range(initial_capacity):
             self.table.append([])
 
     # Inserts a new item into the hash table.
-
-    def insert(self, key, address, city, state, zipcode, deadline, weight, status):  # does both insert and update
+    def insert(self, key, package):  # does both insert and update
         # get the bucket list where this item will go.
         bucket = hash(key) % len(self.table)
         bucket_list = self.table[bucket]
@@ -22,17 +21,11 @@ class ChainingHashTable:
         for kv in bucket_list:
             # print (key_value)
             if kv[0] == key:
-                kv[1] = address
-                kv[2] = city
-                kv[3] = state
-                kv[4] = zipcode
-                kv[5] = deadline
-                kv[6] = weight
-                kv[7] = status
+                kv[1] = package
                 return True
 
         # if not, insert the item to the end of the bucket list.
-        key_value = [key, address, city, state, zipcode, deadline, weight, status]
+        key_value = [key, package]
         bucket_list.append(key_value)
         return True
 
@@ -49,7 +42,7 @@ class ChainingHashTable:
         for kv in bucket_list:
             # print (key_value)
             if kv[0] == key:
-                return kv[0], kv[1], kv[2], kv[3], kv[4], kv[5], kv[6], kv[7]  # value
+                return kv[1]  # value
         return None
 
     # Removes an item with matching key from the hash table.
@@ -63,7 +56,7 @@ class ChainingHashTable:
         for kv in bucket_list:
             # print (key_value)
             if kv[0] == key:
-                bucket_list.remove([kv[0], kv[1], kv[2], kv[3], kv[4], kv[5], kv[6], kv[7]])
+                bucket_list.remove(key)
 
 
 class Package:
@@ -82,9 +75,9 @@ class Package:
             self.ID, self.address, self.city, self.state, self.zipcode, self.deadline, self.weight, self.status)
 
 
-def loadPackageData(fileName):
-    with open(fileName) as wgupsPackageFile:
-        packageData = csv.reader(wgupsPackageFile, delimiter=',')
+def loadPackageData(filename):
+    with open(filename) as packageFile:
+        packageData = csv.reader(packageFile, delimiter=',')
 
         for package in packageData:
             pID = int(package[0])
@@ -98,10 +91,10 @@ def loadPackageData(fileName):
 
             # package object
             package = Package(pID, pAddress, pCity, pState, pZipcode, pDeadline, pWeight, pStatus)
-            #print(p)
+            # print(package)
 
             # Insert into the hash table
-            myHash.insert(pID, pAddress, pCity, pState, pZipcode, pDeadline, pWeight, pStatus)
+            myHash.insert(pID, package)
 
 
 # Hash table instance
@@ -114,4 +107,6 @@ print("WGUPSPackageFile from Hashtable:")
 # Fetch data from Hash Table
 for i in range(len(myHash.table)):
     print("Package: {}".format(myHash.search(i+1)))  # 1 to 40 is sent to myHash.search()
+
+
 
