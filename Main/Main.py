@@ -6,6 +6,7 @@ import csv
 class ChainingHashTable:
     # Constructor with optional initial capacity parameter.
     # Assigns all buckets with an empty list.
+    # Time complexity O(1)
     def __init__(self, initial_capacity=10):
         # initialize the hash table with empty bucket list entries.
         self.table = []
@@ -13,6 +14,7 @@ class ChainingHashTable:
             self.table.append([])
 
     # Inserts a new item into the hash table.
+    # Time complexity O(1)
     def insert(self, key, package):  # does both insert and update
         # get the bucket list where this item will go.
         bucket = hash(key) % len(self.table)
@@ -32,7 +34,7 @@ class ChainingHashTable:
 
     # Searches for an item with matching key in the hash table.
     # Returns the item if found, or None if not found.
-
+    # Time complexity O(Log N)
     def search(self, key):
         # get the bucket list where this key would be.
         bucket = hash(key) % len(self.table)
@@ -47,6 +49,7 @@ class ChainingHashTable:
         return None
 
     # Removes an item with matching key from the hash table.
+    # Time complexity O(1)
     def remove(self, key):
         # get the bucket list where this item will be removed from.
         bucket = hash(key) % len(self.table)
@@ -58,7 +61,8 @@ class ChainingHashTable:
             if kv[0] == key:
                 bucket_list.remove(key)
 
-
+# Create package class
+# Time complexity O(1)
 class Package:
     def __init__(self, ID, address, city, state, zipcode, deadline, weight, status):
         self.ID = ID
@@ -70,10 +74,13 @@ class Package:
         self.weight = weight
         self.status = status
 
-    def __str__(self):  # overwrite print(Package) otherwise it will print object reference
+    # overwrite print(Package) otherwise it will print object reference
+    # Time complexity O(1)
+    def __str__(self):
         return "%s, %s, %s, %s, %s, %s, %s, %s" % (self.ID, self.address, self.city, self.state, self.zipcode, self.deadline, self.weight, self.status)
 
-
+# Defining attributes for each column in package file, creating an object, and inserting each one into the hash table
+# Time complexity O(N)
 def loadPackageData(filename):
     with open(filename) as packageFile:
         packageData = csv.reader(packageFile, delimiter=',')
@@ -97,15 +104,17 @@ def loadPackageData(filename):
 
 
 # Hash table instance
+# Time complexity O(1)
 myHash = ChainingHashTable()
 
 # Load packages to Hash Table
+# Time complexity O(1)
 loadPackageData('WGUPSPackageFile.csv')
 
-print("WGUPSPackageFile from Hashtable:")
+# print("WGUPSPackageFile from Hashtable:")
 # Fetch data from Hash Table
-for i in range(len(myHash.table)):
-    print("Package: {}".format(myHash.search(i+1)))  # 1 to 40 is sent to myHash.search()
+# for i in range(len(myHash.table)):
+#    print("Package: {}".format(myHash.search(i+1)))  # 1 to 40 is sent to myHash.search()
 
 
 
