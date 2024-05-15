@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a1f8cd27-72fd-4e80-b36e-6e9ee680e94c" name="Changes" comment="Added time complexity comments and commented out print function since the main program will not need that. I chose not to delete because it can probably be used for testing later.">
+    <list default="true" id="a1f8cd27-72fd-4e80-b36e-6e9ee680e94c" name="Changes" comment="Added Distance Table csv and converted it into a list of lists.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Main/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main/Main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main/WGUPSDistanceTable.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Main/WGUPSDistanceTable.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,8 +124,19 @@
       <option name="project" value="LOCAL" />
       <updated>1715784896014</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added Distance Table csv and converted it into a list of lists.">
+      <option name="closed" value="true" />
+      <created>1715793963963</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1715793963963</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.csv" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -133,6 +145,7 @@
     <MESSAGE value="Still working on Hash table day 2. I don't think it is self-adjusting yet. All the information about packages 1-10 are showing up now." />
     <MESSAGE value="Self-adjusting hash table is complete. Added name and ID# to Main.py" />
     <MESSAGE value="Added time complexity comments and commented out print function since the main program will not need that. I chose not to delete because it can probably be used for testing later." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added time complexity comments and commented out print function since the main program will not need that. I chose not to delete because it can probably be used for testing later." />
+    <MESSAGE value="Added Distance Table csv and converted it into a list of lists." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Distance Table csv and converted it into a list of lists." />
   </component>
 </project>
