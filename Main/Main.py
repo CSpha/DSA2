@@ -116,6 +116,8 @@ loadPackageData('WGUPSPackageFile.csv')
 # for i in range(len(myHash.table)):
 #    print("Package: {}".format(myHash.search(i+1)))  # 1 to 40 is sent to myHash.search()
 
+
+
 # Reading Distance Table csv and converting to a list of lists (2d array)
 def loadDistanceData(filepath):
     with open(filepath, newline='') as distanceFile:
@@ -140,4 +142,14 @@ distance = data_location(distances, row_index, column_index)
 
 print("Distance =".format(row_index, column_index), distance)
 
+class Truck:
+    def __init__(self, speed, miles, address, depart_time, packages):
+        self.speed = speed
+        self.miles = miles
+        self.address = address
+        self.depart_time = depart_time
+        self.time = 0
+        self.packages = packages
 
+    def __str__(self):
+        return "%s, %s, %s, %s, %s, %s" % (self.speed, self.miles, self.address, self.depart_time, self.time, self.packages)
