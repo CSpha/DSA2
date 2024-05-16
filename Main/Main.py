@@ -116,13 +116,28 @@ loadPackageData('WGUPSPackageFile.csv')
 # for i in range(len(myHash.table)):
 #    print("Package: {}".format(myHash.search(i+1)))  # 1 to 40 is sent to myHash.search()
 
-# Reading Distance Table csv and converting to a dictionary
+# Reading Distance Table csv and converting to a list of lists (2d array)
+def loadDistanceData(filepath):
+    with open(filepath, newline='') as distanceFile:
+        distanceFile = csv.reader(distanceFile, delimiter=',')
+        data = list(distanceFile)
+    return data
 
+filepath = 'WGUPSDistanceTable.csv'
+distances = loadDistanceData(filepath)
 
-#finds the distance between two addresses
-#def Between(address1,address2):
-#    distance = distanceList[address1][address2]
- #   if distance == '':
- #       distance = distanceList[address2][address1]
-   # return float(distance)
+def data_location(array, row_index, column_index):
+
+    if array[row_index][column_index]:
+        return array[row_index][column_index]
+    else:
+        return array[column_index][row_index]
+
+# tests of distance array
+row_index = 2
+column_index = 3
+distance = data_location(distances, row_index, column_index)
+
+print("Distance =".format(row_index, column_index), distance)
+
 

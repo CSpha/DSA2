@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a1f8cd27-72fd-4e80-b36e-6e9ee680e94c" name="Changes" comment="Added Distance Table csv and converted it into a list of lists.">
+    <list default="true" id="a1f8cd27-72fd-4e80-b36e-6e9ee680e94c" name="Changes" comment="Still working on Distance table.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Main/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main/Main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main/WGUPSDistanceTable.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Main/WGUPSDistanceTable.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +131,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715793963963</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Still working on Distance table.">
+      <option name="closed" value="true" />
+      <created>1715805639906</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1715805639906</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -146,6 +153,7 @@
     <MESSAGE value="Self-adjusting hash table is complete. Added name and ID# to Main.py" />
     <MESSAGE value="Added time complexity comments and commented out print function since the main program will not need that. I chose not to delete because it can probably be used for testing later." />
     <MESSAGE value="Added Distance Table csv and converted it into a list of lists." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Distance Table csv and converted it into a list of lists." />
+    <MESSAGE value="Still working on Distance table." />
+    <option name="LAST_COMMIT_MESSAGE" value="Still working on Distance table." />
   </component>
 </project>
