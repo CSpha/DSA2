@@ -111,14 +111,7 @@ myHash = ChainingHashTable()
 # Time complexity O(1)
 loadPackageData('WGUPSPackageFile.csv')
 
-# print("WGUPSPackageFile from Hashtable:")
-# Fetch data from Hash Table
-# for i in range(len(myHash.table)):
-#    print("Package: {}".format(myHash.search(i+1)))  # 1 to 40 is sent to myHash.search()
-
-
-
-# Reading Distance Table csv and converting to a list of lists (2d array)
+# Read Distance Table csv and converting to a list of lists (2d array)
 def loadDistanceData(filepath):
     with open(filepath, newline='') as distanceFile:
         distanceFile = csv.reader(distanceFile, delimiter=',')
@@ -128,19 +121,32 @@ def loadDistanceData(filepath):
 filepath = 'WGUPSDistanceTable.csv'
 distances = loadDistanceData(filepath)
 
+#
 def data_location(array, row_index, column_index):
-
     if array[row_index][column_index]:
         return array[row_index][column_index]
     else:
         return array[column_index][row_index]
 
-# tests of distance array
-row_index = 2
-column_index = 3
-distance = data_location(distances, row_index, column_index)
+# Function to find the row index of a given address in the distances array
+def address_location(package, distances):
+    address = package.address
+    for index, column in enumerate(distances):
+        if address in column[0]:  # Addresses are in the first column
+            return index
 
-print("Distance =".format(row_index, column_index), distance)
+# Test data
+package1 = myHash.search(1)
+package2 = myHash.search(2)
+
+# Find the row index of the first address
+row_index = address_location(package1, distances)
+# Find the column index of the second address
+column_index = address_location(package2, distances)
+
+distance = data_location(distances, row_index, column_index)
+print("Distance between '{}' and '{}' = {}".format(package1.address, package2.address, distance))
+
 
 class Truck:
     def __init__(self, speed, miles, address, depart_time, packages):
@@ -153,3 +159,5 @@ class Truck:
 
     def __str__(self):
         return "%s, %s, %s, %s, %s, %s" % (self.speed, self.miles, self.address, self.depart_time, self.time, self.packages)
+
+
