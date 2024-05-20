@@ -1,6 +1,7 @@
 # Philip Audet - Student ID: 001098879
 import csv
 import datetime
+import gc
 
 
 # HashTable class using chaining.
@@ -65,7 +66,7 @@ class ChainingHashTable:
 # Create package class
 # Time complexity O(1)
 class Package:
-    def __init__(self, ID, address, city, state, zipcode, deadline, weight, status):
+    def __init__(self, ID, address, city, state, zipcode, deadline, weight, status, departureTime, deliveryTime):
         self.ID = ID
         self.address = address
         self.city = city
@@ -74,11 +75,32 @@ class Package:
         self.deadline = deadline
         self.weight = weight
         self.status = status
+        self.departureTime = None
+        self.deliveryTime = None
 
     # overwrite print(Package) otherwise it will print object reference
     # Time complexity O(1)
     def __str__(self):
-        return "%s, %s, %s, %s, %s, %s, %s, %s" % (self.ID, self.address, self.city, self.state, self.zipcode, self.deadline, self.weight, self.status)
+        return f"{self.ID}, {self.address}, {self.city}, {self.state}, {self.zipcode}, {self.deadline}, {self.weight}, {self.status}, {self.departureTime}, {self.deliveryTime}"
+
+    # Update status of each package depending on time entered by user.
+    def changeStatus(self, timeDifference):
+
+        # Change package status based on time difference
+        if self.deliveryTime is None or (self.departureTime is not None and timeDifference < self.departureTime):
+            self.status = "Package Location: The Hub"
+            self.departureTime = "Package has not yet left the hub"
+            self.deliveryTime = "Package not yet delivered"
+        elif timeDifference < self.deliveryTime:
+            self.status = "Package Location: En Route"
+            self.deliveryTime = "Package not yet delivered"
+        else:
+            self.status = "Package Location: Delivered"
+
+        # Package 9 address change
+        if self.ID == 9 and timeDifference >= datetime.timedelta(hours=10, minutes=20):
+                self.address = "410 S. State St"
+                self.zipcode = "84111"
 
 # Defining attributes for each column in package file, creating an object, and inserting each one into the hash table
 # Time complexity O(N)
@@ -95,10 +117,11 @@ def loadPackageData(filename):
             pDeadline = package[5]
             pWeight = package[6]
             pStatus = "At hub"
+            pDepartureTime = None
+            pDeliveryTime = None
 
             # package object
-            package = Package(pID, pAddress, pCity, pState, pZipcode, pDeadline, pWeight, pStatus)
-            # print(package)
+            package = Package(pID, pAddress, pCity, pState, pZipcode, pDeadline, pWeight, pStatus, pDepartureTime, pDeliveryTime)
 
             # Insert into the hash table
             myHash.insert(pID, package)
@@ -153,12 +176,12 @@ class Truck:
         self.packages = packages
 
     def __str__(self):
-        return "%s, %s, %s, %s, %s, %s" % (self.speed, self.miles, self.address, self.depart_time, self.time, self.packages)
+        return f"{self.speed}, {self.miles}, {self.address}, {self.depart_time}, {self.time}, {self.packages}"
 
 # Manually loading trucks
 # Time complexity O(1)
-truckOne = Truck(18, 0.0, "4001 South 700 East", datetime.timedelta(hours = 8),[1,13,14,15,16,19,20,27,29,30,31,34,37,40])
-truckTwo = Truck(18, 0.0, "4001 South 700 East", datetime.timedelta(hours = 11),[2,3,4,5,9,18,26,28,32,35,36,38])
+truckOne = Truck(18, 0.0, "4001 South 700 East", datetime.timedelta(hours = 8),[2,13,14,15,16,19,20,27,29,30,31,34,37,40])
+truckTwo = Truck(18, 0.0, "4001 South 700 East", datetime.timedelta(hours = 11),[1,3,4,5,9,18,26,28,32,35,36,38])
 truckThree = Truck(18, 0.0, "4001 South 700 East", datetime.timedelta(hours = 9, minutes = 5),[6,7,8,10,11,12,17,21,22,23,24,25,33,39])
 
 def packageDelivery(truck):
@@ -166,12 +189,11 @@ def packageDelivery(truck):
     # Generates an array which contains all the packages that need to be delivered
     packageArray = []
 
+
     # Loads each package based on ID into the above array
     for packageID in truck.packages:
         package = myHash.search(packageID)
         packageArray.append(package)
-
-    truck.packages.clear()
 
     # Loop while there are still packages in the array.
     while len(packageArray) >= 1:
@@ -180,7 +202,9 @@ def packageDelivery(truck):
 
         # Calculate the next package utilizing shortest distance
         for package in packageArray:
-            if package.ID in [25, 6]:
+            # Packages 6 and 25 must be delivered before 10:30am and do not arrive at the depot until 9:05am, so they
+            # must be prioritized on the second truck to go out.
+            if package.ID in [6, 25]:
                 upcomingPackage = package
                 upcomingAddress = data_location(address_location(truck.address),
                                                    address_location(package.address))
@@ -197,15 +221,15 @@ def packageDelivery(truck):
         truck.miles += upcomingAddress
         truck.address = upcomingPackage.address
         truck.time += datetime.timedelta(hours=upcomingAddress / truck.speed)
-        upcomingPackage.packageDeliveryTime = truck.time
-        upcomingPackage.packageDepartureTime = truck.depart_time
+        upcomingPackage.departureTime = truck.depart_time
+        upcomingPackage.deliveryTime = truck.time
 
 # Initiates the beginning of package delivery
 packageDelivery(truckOne)
 packageDelivery(truckThree)
 
 # Truck 2 will remain until the first or third truck returns.
-truckTwo.truckLeavingTime = min(truckOne.time, truckThree.time)
+truckTwo.depart_time = min(truckOne.time, truckThree.time)
 packageDelivery(truckTwo)
 
 
@@ -213,3 +237,33 @@ packageDelivery(truckTwo)
 print("The total miles driven is:",
           (truckOne.miles + truckTwo.miles + truckThree.miles))
 
+# User Interface which will display status of any and all packages at the time chosen by the user.
+while True:
+    try:
+        inputTime = input("Kindly input the desired time to view the status of each package. Use the format HH:MM: ")
+        (h, m) = map(int, inputTime.split(":"))
+        timeDifference = datetime.timedelta(hours=h, minutes=m)
+    except ValueError:
+        print("Invalid time format. Please try again.")
+        continue
+
+    packageEntry = input("Input the desired Package ID or press Enter to see all package statuses: ")
+    if packageEntry.strip() == "":
+        packageEntry = range(1, 41)
+    else:
+        try:
+            packageEntry = [int(packageEntry)]
+        except ValueError:
+            print("Invalid Package ID. Please try again.")
+            continue
+
+    for packageID in packageEntry:
+        package = myHash.search(packageID)
+        if package:
+            package.changeStatus(timeDifference)
+            print(str(package))
+        else:
+            print(f"Package ID {packageID} not found.")
+
+
+    input("Press Enter to continue...")  # Pause for user to read output
