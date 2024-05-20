@@ -119,33 +119,37 @@ with open(filepath, newline='') as distancesFile:
         distanceR = csv.reader(distancesFile, delimiter=',')
         distanceR = list(distanceR)
 
-# Reading Address CSV
-# Time complexity: O(N)
+# Reading Addresses CSV
+# Time complexity O(N)
 filename = 'Addresses.csv'
 with open(filename, newline='') as addressesFile:
         addressR = csv.reader(addressesFile, delimiter=',')
         addressR = list(addressR)
 
-# Function to find the row index of a given address in the distances array
+# Find address information
+# Time complexity O(1)
 def address_location(address):
     for row in addressR:
         if address in row[2]:
             return int(row[0])
 
-def data_location(row_index, column_index):
-    distance = distanceR[row_index][column_index]
-    if distance:
-        return [row_index][column_index]
-    else:
-        return [column_index][row_index]
+# Find distances between two addresses
+# Time complexity O(1)
+def data_location(address1, address2):
+    distance = distanceR[address1][address2]
+    if distance == '':
+        distance = distanceR[address2][address1]
+    return float(distance)
 
+# Creating Truck class and string representation
+# Time complexity O(N)
 class Truck:
     def __init__(self, speed, miles, address, depart_time, packages):
         self.speed = speed
         self.miles = miles
         self.address = address
         self.depart_time = depart_time
-        self.time = 0
+        self.time = depart_time
         self.packages = packages
 
     def __str__(self):
@@ -157,57 +161,55 @@ truckOne = Truck(18, 0.0, "4001 South 700 East", datetime.timedelta(hours = 8),[
 truckTwo = Truck(18, 0.0, "4001 South 700 East", datetime.timedelta(hours = 11),[2,3,4,5,9,18,26,28,32,35,36,38])
 truckThree = Truck(18, 0.0, "4001 South 700 East", datetime.timedelta(hours = 9, minutes = 5),[6,7,8,10,11,12,17,21,22,23,24,25,33,39])
 
-def truckDeliverThePackages(truck):
-    print("Truck Object Instance Initialized")
-    #
-    # Generates an array containing all the packages slated for delivery.
-    #
-    deliveryArray = []
-    #
-    # Stores packages from the hash table into the deliveryArray array.
-    #
+def packageDelivery(truck):
+
+    # Generates an array which contains all the packages that need to be delivered
+    packageArray = []
+
+    # Loads each package based on ID into the above array
     for packageID in truck.packages:
         package = myHash.search(packageID)
-        deliveryArray.append(package)
+        packageArray.append(package)
 
     truck.packages.clear()
 
-    while len(deliveryArray) > 0:
-        upcomingAddress = 2000
+    # Loop while there are still packages in the array.
+    while len(packageArray) >= 1:
+        upcomingAddress = float('inf')
         upcomingPackage = None
-        #
-        # Find the next package to be delivered based on distance
-        #
-        for package in deliveryArray:
+
+        # Calculate the next package utilizing shortest distance
+        for package in packageArray:
             if package.ID in [25, 6]:
                 upcomingPackage = package
                 upcomingAddress = data_location(address_location(truck.address),
                                                    address_location(package.address))
                 break
             if data_location(address_location(truck.address),
-                                address_location(package.packageStreet)) <= upcomingAddress:
+                                address_location(package.address)) <= upcomingAddress:
                 upcomingAddress = data_location(address_location(truck.address),
                                                    address_location(package.address))
                 upcomingPackage = package
-                #
-        # Add the upcoming package to the truck
-        #
+
+        # Add the upcoming package to the truck object
         truck.packages.append(upcomingPackage.ID)
-        deliveryArray.remove(upcomingPackage)
+        packageArray.remove(upcomingPackage)
         truck.miles += upcomingAddress
         truck.address = upcomingPackage.address
-        truck.time += datetime.timedelta(hours=upcomingAddress / 18)
+        truck.time += datetime.timedelta(hours=upcomingAddress / truck.speed)
         upcomingPackage.packageDeliveryTime = truck.time
         upcomingPackage.packageDepartureTime = truck.depart_time
-        #
-    # Initiates the departure of trucks for package delivery.
-    # Simulate package delivery for each truck
-    #
-    truckDeliverThePackages(truckOne)
-    truckDeliverThePackages(truckThree)
-    #
-    # Truck 2 will remain until either Truck 1 or Truck 2 returns.
-    # Synchronize leaving time of the second truck with the earliest arrival time of the first and third trucks
-    #
-    truckTwo.truckLeavingTime = min(truckOne.time, truckThree.time)
-    truckDeliverThePackages(truckTwo)
+
+# Initiates the beginning of package delivery
+packageDelivery(truckOne)
+packageDelivery(truckThree)
+
+# Truck 2 will remain until the first or third truck returns.
+truckTwo.truckLeavingTime = min(truckOne.time, truckThree.time)
+packageDelivery(truckTwo)
+
+
+# Display the miles driven by all the delivery trucks.
+print("The total miles driven is:",
+          (truckOne.miles + truckTwo.miles + truckThree.miles))
+
