@@ -112,42 +112,32 @@ myHash = ChainingHashTable()
 # Time complexity O(1)
 loadPackageData('WGUPSPackageFile.csv')
 
-# Read Distance Table csv and converting to a list of lists (2d array)
-def loadDistanceData(filepath):
-    with open(filepath, newline='') as distanceFile:
-        distanceFile = csv.reader(distanceFile, delimiter=',')
-        data = list(distanceFile)
-    return data
+# Read Distances csv and converting to a list of lists (2d array)
+# Time complexity: O(N)
+filepath = 'Distances.csv'
+with open(filepath, newline='') as distancesFile:
+        distanceR = csv.reader(distancesFile, delimiter=',')
+        distanceR = list(distanceR)
 
-filepath = 'WGUPSDistanceTable.csv'
-distances = loadDistanceData(filepath)
-
-#
-def data_location(array, row_index, column_index):
-    if array[row_index][column_index]:
-        return array[row_index][column_index]
-    else:
-        return array[column_index][row_index]
+# Reading Address CSV
+# Time complexity: O(N)
+filename = 'Addresses.csv'
+with open(filename, newline='') as addressesFile:
+        addressR = csv.reader(addressesFile, delimiter=',')
+        addressR = list(addressR)
 
 # Function to find the row index of a given address in the distances array
-def address_location(package, distances):
-    address = package.address
-    for index, column in enumerate(distances):
-        if address in column[0]:  # Addresses are in the first column
-            return index
+def address_location(address):
+    for row in addressR:
+        if address in row[2]:
+            return int(row[0])
 
-# Test data
-package1 = myHash.search(1)
-package2 = myHash.search(2)
-
-# Find the row index of the first address
-row_index = address_location(package1, distances)
-# Find the column index of the second address
-column_index = address_location(package2, distances)
-
-distance = data_location(distances, row_index, column_index)
-print("Distance between '{}' and '{}' = {}".format(package1.address, package2.address, distance))
-
+def data_location(row_index, column_index):
+    distance = distanceR[row_index][column_index]
+    if distance:
+        return [row_index][column_index]
+    else:
+        return [column_index][row_index]
 
 class Truck:
     def __init__(self, speed, miles, address, depart_time, packages):
@@ -167,3 +157,57 @@ truckOne = Truck(18, 0.0, "4001 South 700 East", datetime.timedelta(hours = 8),[
 truckTwo = Truck(18, 0.0, "4001 South 700 East", datetime.timedelta(hours = 11),[2,3,4,5,9,18,26,28,32,35,36,38])
 truckThree = Truck(18, 0.0, "4001 South 700 East", datetime.timedelta(hours = 9, minutes = 5),[6,7,8,10,11,12,17,21,22,23,24,25,33,39])
 
+def truckDeliverThePackages(truck):
+    print("Truck Object Instance Initialized")
+    #
+    # Generates an array containing all the packages slated for delivery.
+    #
+    deliveryArray = []
+    #
+    # Stores packages from the hash table into the deliveryArray array.
+    #
+    for packageID in truck.packages:
+        package = myHash.search(packageID)
+        deliveryArray.append(package)
+
+    truck.packages.clear()
+
+    while len(deliveryArray) > 0:
+        upcomingAddress = 2000
+        upcomingPackage = None
+        #
+        # Find the next package to be delivered based on distance
+        #
+        for package in deliveryArray:
+            if package.ID in [25, 6]:
+                upcomingPackage = package
+                upcomingAddress = data_location(address_location(truck.address),
+                                                   address_location(package.address))
+                break
+            if data_location(address_location(truck.address),
+                                address_location(package.packageStreet)) <= upcomingAddress:
+                upcomingAddress = data_location(address_location(truck.address),
+                                                   address_location(package.address))
+                upcomingPackage = package
+                #
+        # Add the upcoming package to the truck
+        #
+        truck.packages.append(upcomingPackage.ID)
+        deliveryArray.remove(upcomingPackage)
+        truck.miles += upcomingAddress
+        truck.address = upcomingPackage.address
+        truck.time += datetime.timedelta(hours=upcomingAddress / 18)
+        upcomingPackage.packageDeliveryTime = truck.time
+        upcomingPackage.packageDepartureTime = truck.depart_time
+        #
+    # Initiates the departure of trucks for package delivery.
+    # Simulate package delivery for each truck
+    #
+    truckDeliverThePackages(truckOne)
+    truckDeliverThePackages(truckThree)
+    #
+    # Truck 2 will remain until either Truck 1 or Truck 2 returns.
+    # Synchronize leaving time of the second truck with the earliest arrival time of the first and third trucks
+    #
+    truckTwo.truckLeavingTime = min(truckOne.time, truckThree.time)
+    truckDeliverThePackages(truckTwo)
