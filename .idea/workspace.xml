@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a1f8cd27-72fd-4e80-b36e-6e9ee680e94c" name="Changes" comment="Everything should be working. Time complexities added.">
+    <list default="true" id="a1f8cd27-72fd-4e80-b36e-6e9ee680e94c" name="Changes" comment="Final commit pending any feedback and revisions needed.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Main/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main/Main.py" afterDir="false" />
     </list>
@@ -190,7 +190,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716229501293</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Final commit pending any feedback and revisions needed.">
+      <option name="closed" value="true" />
+      <created>1716236736515</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1716236736515</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -211,6 +219,7 @@
     <MESSAGE value="Looks like the algorithm is working. Need to work on UI next." />
     <MESSAGE value="UI works on the first loop but not the second. Need to create a menu." />
     <MESSAGE value="Everything should be working. Time complexities added." />
-    <option name="LAST_COMMIT_MESSAGE" value="Everything should be working. Time complexities added." />
+    <MESSAGE value="Final commit pending any feedback and revisions needed." />
+    <option name="LAST_COMMIT_MESSAGE" value="Final commit pending any feedback and revisions needed." />
   </component>
 </project>

@@ -198,23 +198,6 @@ truckThree = Truck(18, 0.0, "4001 South 700 East", datetime.timedelta(hours=9, m
 
 
 # Package delivery function using nearest neighbor algorithm
-
-# Requirement F1: The strengths of the nearest neighbor
-# algorithm include its ease of implementation and execution. It also allows for easy updating by adding new packages
-# for scalability.
-
-# Requirement F2: As seen from the total mileage screenshot, the algorithm meets the requirements of
-# making all deliveries while travelling under 140 miles. All 40 packages were delivered before their respective
-# deadlines.
-
-# Requirement F3: I believe the 2-Opt solution and Farthest Insertion would also work within the
-# requirements of the scenario.
-
-# Requirement F3a: The 2-Opt solution considers every possible swap that includes 2
-# edges. It will then swap those edges when it finds an improvement. The Farthest Insertion method begins at the
-# start and finds the farthest destination from it. It will then continually find the farthest destination that is
-# not already found and places it between the destinations which will cause the result to be the shortest possible.
-
 # Time complexity O(N^2)
 def packageDelivery(truck):
     # Generates an array which contains all the packages that need to be delivered
@@ -330,19 +313,3 @@ while True:
     # Ask user to try again if invalid selection made on the main menu.
     else:
         print("Invalid selection. Please try again.")
-
-# Requirement G: If I were to do this project again I would attempt to find a method to load the trucks instead of
-# doing it manually. I think that would be interesting and also permit greater scalability of the program since new
-# packages could be added to the list at which point the method would incorporate them into loading the trucks
-# instead of having to assign them to each truck manually.
-
-# Requirement H: I utilized a hash table for this program. As seen from the total mileage screenshot,
-# this data structure meets the requirements of # making all deliveries while travelling under 140 miles. All 40
-# packages were delivered before their respective deadlines. Requirement H1: Two other data structures that could
-# have been used instead of a hash table and also fulfilled the requirements would be a hash map and a red-black tree.
-
-# Requirement H1a: A hash map is not synchronized however a hash table is. A hash map will maintain insertion order
-# whereas a hash table does not. A hash map is also faster than a hash table. A red-black tree is a binary search tree
-# which would increase the performance of the search function to O(log n). Insert and delete operations execute
-# in O(log n) as well. A red-black tree is more likely to be balanced after modification than other self-balancing
-# binary search trees.
