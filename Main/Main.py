@@ -67,7 +67,7 @@ class ChainingHashTable:
 # Create package class
 # Time complexity O(1)
 class Package:
-    def __init__(self, ID, address, city, state, zipcode, deadline, weight, status, departureTime, deliveryTime):
+    def __init__(self, ID, address, city, state, zipcode, deadline, weight, status, departureTime, deliveryTime, truckNo):
         self.ID = ID
         self.address = address
         self.city = city
@@ -78,13 +78,14 @@ class Package:
         self.status = status
         self.departureTime = None
         self.deliveryTime = None
+        self.truckNo = truckNo
 
     # overwrite print(Package) otherwise it will print object reference
     # Time complexity O(1)
     def __str__(self):
         return (f"Package ID: {self.ID} \t| Address: {self.address} \t| {self.city}, {self.state}, {self.zipcode} | "
                 f"Deadline: {self.deadline} | Weight: {self.weight} | Status: {self.status} | Departure"
-                f" Time:  {self.departureTime} | Delivery Time:  {self.deliveryTime}")
+                f" Time:  {self.departureTime} | Delivery Time:  {self.deliveryTime} | Truck Number: {self.truckNo}")
 
     # Update status of each package depending on time entered by user.
     # Time complexity O(1)
@@ -93,8 +94,12 @@ class Package:
         # Change package status based on time difference
         if self.deliveryTime is None or (self.departureTime is not None and timeDifference < self.departureTime):
             self.status = "At Hub"
+            self.departureTime = "Not Out For Delivery"
+            self.deliveryTime = "Not Delivered"
+            self.truckNo = "Not Loaded"
         elif timeDifference < self.deliveryTime:
             self.status = "Out For Delivery"
+            self.deliveryTime = "Not Delivered"
         else:
             self.status = "Delivered"
 
@@ -125,10 +130,11 @@ def loadPackageData(filename):
             pStatus = "At hub"
             pDepartureTime = None
             pDeliveryTime = None
+            pTruckNo = None
 
             # package object
             package = Package(pID, pAddress, pCity, pState, pZipcode, pDeadline, pWeight, pStatus, pDepartureTime,
-                              pDeliveryTime)
+                              pDeliveryTime, pTruckNo)
 
             # Insert into the hash table
             myHash.insert(pID, package)
@@ -175,26 +181,27 @@ def data_location(address1, address2):
 # Creating Truck class and string representation
 # Time complexity O(1)
 class Truck:
-    def __init__(self, speed, miles, address, depart_time, packages):
+    def __init__(self, speed, miles, address, depart_time, packages, truckNo):
         self.speed = speed
         self.miles = miles
         self.address = address
         self.depart_time = depart_time
         self.time = depart_time
         self.packages = packages
+        self.truckNo = truckNo
 
     def __str__(self):
-        return f"{self.speed}, {self.miles}, {self.address}, {self.depart_time}, {self.time}, {self.packages}"
+        return f"{self.speed}, {self.miles}, {self.address}, {self.depart_time}, {self.time}, {self.packages}, {self.truckNo}"
 
 
 # Manually loading trucks
 # Time complexity O(1)
 truckOne = Truck(18, 0.0, "4001 South 700 East", datetime.timedelta(hours=8),
-                 [1, 13, 14, 15, 16, 19, 20, 27, 29, 30, 31, 34, 37, 40])
+                 [1, 13, 14, 15, 16, 19, 20, 27, 29, 30, 31, 34, 37, 40], 1)
 truckTwo = Truck(18, 0.0, "4001 South 700 East", datetime.timedelta(hours=11),
-                 [2, 3, 4, 5, 9, 18, 26, 28, 32, 35, 36, 38])
+                 [2, 3, 4, 5, 9, 18, 26, 28, 32, 35, 36, 38], 2)
 truckThree = Truck(18, 0.0, "4001 South 700 East", datetime.timedelta(hours=9, minutes=5),
-                   [6, 7, 8, 10, 11, 12, 17, 21, 22, 23, 24, 25, 33, 39])
+                   [6, 7, 8, 10, 11, 12, 17, 21, 22, 23, 24, 25, 33, 39], 3)
 
 
 # Package delivery function using nearest neighbor algorithm
@@ -207,6 +214,7 @@ def packageDelivery(truck):
     for packageID in truck.packages:
         package = myHash.search(packageID)
         undeliveredPackages.append(package)
+        package.truckNo = truck.truckNo
 
     # Loop while there are still packages in the array.
     while len(undeliveredPackages) >= 1:
