@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a1f8cd27-72fd-4e80-b36e-6e9ee680e94c" name="Changes" comment="Removed comments unrelated to program.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main/Main.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExportToHTMLSettings">
+    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/exportToHTML" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;CSpha&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/CSpha/DSA2.git&quot;,
+    &quot;accountId&quot;: &quot;6dd5546d-1e8e-4ee5-a882-c8dfa4c00c28&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2gHRq2vQRVixjPnbRMTvtv8f6HP" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Python.Hash Table.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.__init__.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;working&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Sea Turtle\PycharmProjects\DSA2\Main" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-babbdf50b680-746f403e7f0c-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.15989.155" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a1f8cd27-72fd-4e80-b36e-6e9ee680e94c" name="Changes" comment="" />
+      <created>1715352704216</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1715352704216</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Created Hash Table file and have the appropriate key values for each column in the package file.">
+      <option name="closed" value="true" />
+      <created>1715608544562</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1715608544562</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Still working on Hash table. I don't think it is self-adjusting yet.">
+      <option name="closed" value="true" />
+      <created>1715629656696</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1715629656696</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Still working on Hash table day 2. I don't think it is self-adjusting yet. All the information about packages 1-10 are showing up now.">
+      <option name="closed" value="true" />
+      <created>1715710451007</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1715710451007</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Self-adjusting hash table is complete. Added name and ID# to Main.py">
+      <option name="closed" value="true" />
+      <created>1715718516814</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1715718516814</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added time complexity comments and commented out print function since the main program will not need that. I chose not to delete because it can probably be used for testing later.">
+      <option name="closed" value="true" />
+      <created>1715784896014</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1715784896014</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added Distance Table csv and converted it into a list of lists.">
+      <option name="closed" value="true" />
+      <created>1715793963963</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1715793963963</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Still working on Distance table.">
+      <option name="closed" value="true" />
+      <created>1715805639906</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1715805639906</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Created Truck class but not the objects for each truck yet.">
+      <option name="closed" value="true" />
+      <created>1715891003037</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1715891003037</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Manually loaded trucks">
+      <option name="closed" value="true" />
+      <created>1716208711205</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1716208711205</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Separated distance and address files.">
+      <option name="closed" value="true" />
+      <created>1716211389799</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1716211389799</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Looks like the algorithm is working. Need to work on UI next.">
+      <option name="closed" value="true" />
+      <created>1716213791398</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1716213791398</updated>
+    </task>
+    <task id="LOCAL-00012" summary="UI works on the first loop but not the second. Need to create a menu.">
+      <option name="closed" value="true" />
+      <created>1716221043877</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1716221043877</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Everything should be working. Time complexities added.">
+      <option name="closed" value="true" />
+      <created>1716229501293</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1716229501293</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Final commit pending any feedback and revisions needed.">
+      <option name="closed" value="true" />
+      <created>1716236736515</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1716236736515</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Removed comments unrelated to program.">
+      <option name="closed" value="true" />
+      <created>1716294244286</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1716294244286</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
+    <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.csv" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Created Hash Table file and have the appropriate key values for each column in the package file." />
+    <MESSAGE value="Still working on Hash table. I don't think it is self-adjusting yet." />
+    <MESSAGE value="Still working on Hash table day 2. I don't think it is self-adjusting yet. All the information about packages 1-10 are showing up now." />
+    <MESSAGE value="Self-adjusting hash table is complete. Added name and ID# to Main.py" />
+    <MESSAGE value="Added time complexity comments and commented out print function since the main program will not need that. I chose not to delete because it can probably be used for testing later." />
+    <MESSAGE value="Added Distance Table csv and converted it into a list of lists." />
+    <MESSAGE value="Still working on Distance table." />
+    <MESSAGE value="Created Truck class but not the objects for each truck yet." />
+    <MESSAGE value="Manually loaded trucks" />
+    <MESSAGE value="Separated distance and address files." />
+    <MESSAGE value="Looks like the algorithm is working. Need to work on UI next." />
+    <MESSAGE value="UI works on the first loop but not the second. Need to create a menu." />
+    <MESSAGE value="Everything should be working. Time complexities added." />
+    <MESSAGE value="Final commit pending any feedback and revisions needed." />
+    <MESSAGE value="Removed comments unrelated to program." />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed comments unrelated to program." />
+  </component>
+</project>
